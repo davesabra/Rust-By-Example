@@ -1,0 +1,1 @@
+{"rustc":8617792432618773455,"features":"[]","target":11410717179030912251,"profile":14996655781355331481,"path":1036222786711178230,"deps":[["regex v1.1.6","regex",3996258956297157935]],"local":[{"MtimeBased":[[1556586875,308277600],".fingerprint\\byte_strings-4d29f26810c9ffa9\\dep-bin-byte_strings-4d29f26810c9ffa9"]}],"rustflags":[],"edition":"Edition2018"}
