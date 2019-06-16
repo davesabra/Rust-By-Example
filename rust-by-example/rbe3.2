@@ -1,0 +1,80 @@
+// rbe activity 3.2
+//Add a function square which takes a Point and a f32 as arguments, and returns a Rectangle 
+//with its lower left corner on the point, and a width and height corresponding to the f32.
+use std::fmt;
+#[derive(Debug)]
+struct Point {
+    x: f32,
+    y: f32,
+}
+
+#[allow(dead_code)]
+#[derive(Debug)]
+struct Rectangle {
+    p1: Point,
+    p2: Point,
+}
+
+impl Rectangle {
+   
+    fn area(&self) -> f32 {
+        let height =   self.p2.y - self.p1.y;
+        let width  =   self.p1.x - self.p2.x;
+        width * height
+    }
+    fn square(point: Point, size: f32) -> Rectangle {     // associated fn that creates square instances of Rectangle 
+        // Destructure the point using a `let` binding
+           let Point {  x: my_x,  y: my_y } = point;
+        
+           let square = Rectangle { 
+           p1: point,
+           p2: Point { x: my_x + size , y: my_y + size },
+           };
+		   
+		   square
+	}
+		   
+	
+}
+
+impl fmt::Display for Rectangle {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{},{}", self.p1, self.p2)
+    }
+}
+
+impl fmt::Display for Point {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{},{}", self.x, self.y)
+    }
+}
+
+fn main() {
+    
+    let  point: Point = Point { x: 0.3, y: 0.4 };
+    // Destructure the point using a `let` binding
+    let Point {  x: my_x,  y: my_y } = point;
+
+    let rectangle = Rectangle {
+        // struct instantiation is an expression 
+        p1: Point { x: my_y, y: my_x },
+        p2: point,
+    };
+
+    println!( 
+        "rectangle coords: (point1: {}, point2: {})", rectangle.p1, rectangle.p2
+    );
+    //println!("The area of the rectangle is {:#?} square pixels", rectangle.area());
+    let formatted_area = format!("{:.*}", 2, rectangle.area());  // 2 d.p.
+    println!("The area of the rectangle is {} square pixels", formatted_area );
+	
+	let origin: Point = Point { x: 0.0, y: 0.0 };
+    let _sq = Rectangle::square(origin, 2.0);       // associated function syntax
+	println!("The area of the square is {} square pixels", sq.area() );
+    
+}
+
+
+
+
+
